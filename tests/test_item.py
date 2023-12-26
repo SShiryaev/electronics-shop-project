@@ -7,7 +7,7 @@ def item1_fixture():
     return Item('TV', 80000, 3)
 
 
-def test_calculate_total_price_item1(item1_fixture):
+def test_calculate_total_price(item1_fixture):
     assert item1_fixture.calculate_total_price() == 240000
 
 
