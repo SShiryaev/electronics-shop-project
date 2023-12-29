@@ -40,16 +40,19 @@ class Item:
 
     @property
     def name(self):
+        """Делает атрибут name приватным и возвращает его"""
         return self.__name
 
     @name.setter
     def name(self, name):
+        """Проверяет, что длина наименования товара не больше 10 символов. В противном случае, обрезает строку"""
         if len(name) > 10:
             self.__name = name[:10]
         self.__name = name
 
     @classmethod
     def instantiate_from_csv(cls, file_path):
+        """Класс-метод, инициализирующий экземпляры класса Item данными из файла src/items.csv"""
         correct_file_path = '../' + file_path
         cls.all.clear()
         with open(os.path.join(correct_file_path), encoding='cp1251') as file:
@@ -63,5 +66,6 @@ class Item:
 
     @staticmethod
     def string_to_number(string):
+        """Статический метод, возвращающий число из числа-строки"""
         float_number = float(string)
         return int(float_number)
