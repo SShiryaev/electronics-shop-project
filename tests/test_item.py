@@ -4,6 +4,7 @@ import pytest
 
 @pytest.fixture
 def item1_fixture():
+    """Фикстура инициализирующая экземпляр класса Item"""
     return Item('TV', 80000, 3)
 
 
