@@ -48,7 +48,8 @@ class Item:
         """Проверяет, что длина наименования товара не больше 10 символов. В противном случае, обрезает строку"""
         if len(name) > 10:
             self.__name = name[:10]
-        self.__name = name
+        else:
+            self.__name = name
 
     @classmethod
     def instantiate_from_csv(cls, file_path):
