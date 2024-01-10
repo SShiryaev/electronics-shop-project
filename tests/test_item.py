@@ -31,3 +31,11 @@ def test_string_to_number():
     assert Item.string_to_number('7') == 7
     assert Item.string_to_number('2.0') == 2
     assert Item.string_to_number('3.9') == 3
+
+
+def test_repr_method(item1_fixture):
+    assert repr(item1_fixture) == "Item('TV', 80000, 3)"
+
+
+def test_str_method(item1_fixture):
+    assert str(item1_fixture) == 'TV'
