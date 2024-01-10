@@ -23,6 +23,16 @@ class Item:
 
         self.all.append(self)
 
+    def __repr__(self):
+        """Метод для отображения информации об объекте класса в режиме отладки"""
+
+        return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        """Метод для отображения информации об объекте класса для пользователей"""
+
+        return f"{self.name}"
+
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
