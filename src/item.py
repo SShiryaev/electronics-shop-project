@@ -24,14 +24,21 @@ class Item:
         self.all.append(self)
 
     def __repr__(self):
-        """Метод для отображения информации об объекте класса в режиме отладки"""
+        """Отображает информацию об объекте класса в режиме отладки."""
 
         return f"{self.__class__.__name__}('{self.name}', {self.price}, {self.quantity})"
 
     def __str__(self):
-        """Метод для отображения информации об объекте класса для пользователей"""
+        """Отображает информацию об объекте класса для пользователей."""
 
         return f"{self.name}"
+
+    def __add__(self, other):
+        """Проверяет что объект принадлежит классу и складывает экземпляры класса по количеству товара в магазине."""
+
+        if isinstance(other, self.__class__):
+            return self.quantity + other.quantity
+        return None
 
     def calculate_total_price(self) -> float:
         """
@@ -63,7 +70,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, file_path):
-        """Класс-метод, инициализирующий экземпляры класса Item данными из файла src/items.csv"""
+        """Инициализирует экземпляры класса Item данными из файла src/items.csv"""
         correct_file_path = '../' + file_path
         cls.all.clear()
         with open(os.path.join(correct_file_path), encoding='cp1251') as file:
@@ -77,6 +84,6 @@ class Item:
 
     @staticmethod
     def string_to_number(string):
-        """Статический метод, возвращающий число из числа-строки"""
+        """Возвращает число из числа-строки"""
         float_number = float(string)
         return int(float_number)
