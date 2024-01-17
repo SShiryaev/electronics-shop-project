@@ -33,9 +33,14 @@ def test_string_to_number():
     assert Item.string_to_number('3.9') == 3
 
 
-def test_repr_method(item1_fixture):
+def test__repr__method(item1_fixture):
     assert repr(item1_fixture) == "Item('TV', 80000, 3)"
 
 
-def test_str_method(item1_fixture):
+def test__str__method(item1_fixture):
     assert str(item1_fixture) == 'TV'
+
+
+def test__add__method(item1_fixture):
+    assert item1_fixture + item1_fixture == 6
+    assert item1_fixture + 3 is None
