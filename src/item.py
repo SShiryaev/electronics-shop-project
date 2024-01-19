@@ -22,6 +22,7 @@ class Item:
         self.quantity = quantity
 
         self.all.append(self)
+        super().__init__()
 
     def __repr__(self):
         """Отображает информацию об объекте класса в режиме отладки."""
