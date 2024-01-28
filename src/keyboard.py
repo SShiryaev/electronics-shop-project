@@ -21,5 +21,4 @@ class Keyboard(Item, MixinKeyboardLanguage):
     """
     Класс для представления категории Телефон в магазине.
     """
-    def __init__(self, name, price, quantity):
-        super().__init__(name, price, quantity)
+    pass
