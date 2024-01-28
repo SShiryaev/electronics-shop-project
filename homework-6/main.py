@@ -1,4 +1,5 @@
 from src.item import Item
+from src.config import VALID_CSV, DAMAGE_CSV, EMPTY_PATH
 
 if __name__ == '__main__':
     # Файл items.csv отсутствует.

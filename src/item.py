@@ -1,5 +1,5 @@
-import os
 import csv
+from src.instantiatecsverror import InstantiateCSVError
 
 
 class Item:
@@ -37,9 +37,10 @@ class Item:
     def __add__(self, other):
         """Проверяет что объект принадлежит классу и складывает экземпляры класса по количеству товара в магазине."""
 
-        if isinstance(other, self.__class__):
+        if isinstance(other, self.__class__) or issubclass(self.__class__, other.__class__):
             return self.quantity + other.quantity
-        return None
+        else:
+            raise TypeError("Можно складывать только объекты классов Phone или Item")
 
     def calculate_total_price(self) -> float:
         """
@@ -70,18 +71,24 @@ class Item:
             self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls, file_path):
+    def instantiate_from_csv(cls, file_name):
         """Инициализирует экземпляры класса Item данными из файла src/items.csv"""
-        correct_file_path = '../' + file_path
-        cls.all.clear()
-        with open(os.path.join(correct_file_path), encoding='cp1251') as file:
-            data_csv = csv.DictReader(file)
-            for attribute in data_csv:
-                name = attribute['name']
-                price = float(attribute['price'])
-                quantity = int(attribute['quantity'])
-                object_from_cvs = cls(name, price, quantity)
-            return object_from_cvs
+
+        try:
+            cls.all.clear()
+            with open(file_name, encoding='cp1251') as file:
+                data_csv = csv.DictReader(file)
+                for attribute in data_csv:
+                    if len(attribute) < 3:
+                        raise InstantiateCSVError('Файл item.csv поврежден')
+                    else:
+                        name = attribute['name']
+                        price = float(attribute['price'])
+                        quantity = cls.string_to_number(attribute['quantity'])
+                        object_from_cvs = cls(name, price, quantity)
+                return object_from_cvs
+        except FileNotFoundError:
+            raise FileNotFoundError('Отсутствует файл item.csv')
 
     @staticmethod
     def string_to_number(string):
