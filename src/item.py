@@ -1,5 +1,6 @@
 import csv
 from src.instantiatecsverror import InstantiateCSVError
+from src.config import VALID_CSV, DAMAGE_CSV
 
 
 class Item:
@@ -71,7 +72,7 @@ class Item:
             self.__name = name
 
     @classmethod
-    def instantiate_from_csv(cls, file_name):
+    def instantiate_from_csv(cls, file_name=VALID_CSV):
         """Инициализирует экземпляры класса Item данными из файла src/items.csv"""
 
         try:
